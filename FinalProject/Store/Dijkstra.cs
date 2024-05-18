@@ -18,7 +18,7 @@ namespace FinalProject.Store
             // Initialize the distances and previous dictionaries
             Distances = new Dictionary<string, double>();//איתחול
             Previous = new Dictionary<string, string>();//איתחול
-            var priorityQueue = new SortedSet<(double Distance, string NodeId)>();//תור קדימויות
+            var priorityQueue = new SortedSet<(double Distance, string NodeId)>();//תור קדימויות-ממוין לפי מרחק מנקודת התחלה
 
             foreach (var corridor in landmark.Corridors)
             {
@@ -43,13 +43,13 @@ namespace FinalProject.Store
                 }
             }
 
-            // Set the distance for the start node to 0
+            // Set the distance for the start node to 0-צומת התחלה מוגדרת ל
             Distances[startId] = 0;
             priorityQueue.Add((0, startId));
 
             while (priorityQueue.Count > 0)
             {
-                var (currentDistance, currentNode) = priorityQueue.First();
+                var (currentDistance, currentNode) = priorityQueue.First();//מרחק-צומת
                 priorityQueue.Remove(priorityQueue.First());
 
                 // Get the current node's neighbors
@@ -57,6 +57,7 @@ namespace FinalProject.Store
 
                 foreach (var (neighborId, weight) in neighbors)
                 {
+                    //בודק האם המרחק החדש הוא קטן יותר ואם כן עושה הקלה
                     var newDistance = currentDistance + weight;
                     if (newDistance < Distances[neighborId])
                     {
