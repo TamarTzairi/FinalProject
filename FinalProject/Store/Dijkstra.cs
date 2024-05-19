@@ -20,6 +20,7 @@ namespace FinalProject.Store
             Previous = new Dictionary<string, string>();//איתחול
             var priorityQueue = new SortedSet<(double Distance, string NodeId)>();//תור קדימויות-ממוין לפי מרחק מנקודת התחלה
 
+
             foreach (var corridor in landmark.Corridors)
             {
                 Distances[corridor.CorridorId] = double.MaxValue;//איתחול לאינסוף
