@@ -14,7 +14,7 @@ namespace FinalProject.DTO
         [BsonElement("EndPoint")]
         public int EndPoint { get; set; }
         public int Floor { get; set; }
-        //public Room CorridorLandmark { get; set; }//כדי שהמסדרון יהיה עם נקודת ציון
+        public Room CorridorLandmark { get; set; }//כדי שהמסדרון יהיה עם נקודת ציון
         public List<Class> ClassList { get; set; }=new List<Class>();
         public List<ProtectedSpaceRoom> ProtectedSpaceRoomList { get; set; } = new List<ProtectedSpaceRoom>(); 
 

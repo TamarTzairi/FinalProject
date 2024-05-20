@@ -13,9 +13,12 @@ var a = builder.Configuration.GetValue<string>("LandmarkStoreDatabaseSettings:Co
 builder.Services.AddSingleton<IMongoClient>(s =>
     new MongoClient(builder.Configuration.GetValue<string>("LandmarkStoreDatabaseSettings:ConnectionString")));
 
+
 builder.Services.AddScoped<ILandmarkFunction, LandmarkFunction>();
-
-
+builder.Services.AddScoped<IRoomFunction, RoomFunction>();
+builder.Services.AddScoped<IClassFunction, ClassFunction>();
+builder.Services.AddScoped<ICorridorFunction, CorridorFunction>();
+builder.Services.AddScoped<IPsrFunction, PsrFunction>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

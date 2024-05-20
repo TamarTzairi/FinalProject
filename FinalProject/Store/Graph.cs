@@ -23,7 +23,7 @@ namespace FinalProject.Store
                 Node<Corridor> corridor = null;
                 corridor.NodeId = landmark.Corridors[i].CorridorId;
                 corridor.Edges = new List<Edge<Corridor>>();
-                //corridor.Data = landmark.Corridors[i].CorridorLandmark;
+                corridor.Data = landmark.Corridors[i].CorridorLandmark;
                 //זה טוב ועובד
                /* foreach (var item in landmark.Corridors[i].ClassList)
                 {

@@ -1,24 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\user\\Documents\\תיכנות\\תכנות שנה ב\\פרויקט גמר\\פרויקט חדש 7.4.24\\FinalProject\\FinalProject\\FinalProject.csproj": {}
+    "C:\\Users\\tichnut\\Desktop\\תמר צאירי\\פרויקט גמר\\FinalProject\\FinalProject\\FinalProject.csproj": {}
   },
   "projects": {
-    "C:\\Users\\user\\Documents\\תיכנות\\תכנות שנה ב\\פרויקט גמר\\פרויקט חדש 7.4.24\\FinalProject\\FinalProject\\FinalProject.csproj": {
+    "C:\\Users\\tichnut\\Desktop\\תמר צאירי\\פרויקט גמר\\FinalProject\\FinalProject\\FinalProject.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\user\\Documents\\תיכנות\\תכנות שנה ב\\פרויקט גמר\\פרויקט חדש 7.4.24\\FinalProject\\FinalProject\\FinalProject.csproj",
+        "projectUniqueName": "C:\\Users\\tichnut\\Desktop\\תמר צאירי\\פרויקט גמר\\FinalProject\\FinalProject\\FinalProject.csproj",
         "projectName": "FinalProject",
-        "projectPath": "C:\\Users\\user\\Documents\\תיכנות\\תכנות שנה ב\\פרויקט גמר\\פרויקט חדש 7.4.24\\FinalProject\\FinalProject\\FinalProject.csproj",
-        "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\user\\Documents\\תיכנות\\תכנות שנה ב\\פרויקט גמר\\פרויקט חדש 7.4.24\\FinalProject\\FinalProject\\obj\\",
+        "projectPath": "C:\\Users\\tichnut\\Desktop\\תמר צאירי\\פרויקט גמר\\FinalProject\\FinalProject\\FinalProject.csproj",
+        "packagesPath": "C:\\Users\\tichnut\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\tichnut\\Desktop\\תמר צאירי\\פרויקט גמר\\FinalProject\\FinalProject\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\tichnut\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -27,7 +27,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -69,8 +68,7 @@
             "net47",
             "net471",
             "net472",
-            "net48",
-            "net481"
+            "net48"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -82,7 +80,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.302\\RuntimeIdentifierGraph.json"
         }
       }
     }

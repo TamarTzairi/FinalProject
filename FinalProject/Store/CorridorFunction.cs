@@ -3,7 +3,7 @@ using MongoDB.Driver;
 
 namespace FinalProject.Store
 {
-    public class CorridorFunction
+    public class CorridorFunction:ICorridorFunction
     {
         private readonly IMongoCollection<Corridor> _corridor;
         public CorridorFunction(IMongoClient mongoClient)

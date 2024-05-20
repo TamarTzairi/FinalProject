@@ -3,7 +3,7 @@ using MongoDB.Driver;
 
 namespace FinalProject.Store
 {
-    public class ClassFunction
+    public class ClassFunction:IClassFunction
     {
 
         private readonly IMongoCollection<Class> _class;

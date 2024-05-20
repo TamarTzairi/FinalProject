@@ -3,7 +3,7 @@ using MongoDB.Driver;
 
 namespace FinalProject.Store
 {
-    public class PsrFunction
+    public class PsrFunction:IPsrFunction
     {
 
         private readonly IMongoCollection<ProtectedSpaceRoom> _psr;
