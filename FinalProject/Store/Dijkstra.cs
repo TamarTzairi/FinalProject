@@ -10,10 +10,10 @@ namespace FinalProject.Store
 
     public class Dijkstra
     {
-        public Dictionary<string, double> Distances { get; private set; }//מרחק
-        public Dictionary<string, string> Previous { get; private set; }//האבא הקודם
+        public static Dictionary<string, double> Distances { get; private set; }//מרחק
+        public static Dictionary<string, string> Previous { get; private set; }//האבא הקודם
 
-        public int Execute(Landmark landmark, string startId)
+        public static int Execute(Landmark landmark, string startId)
         {
             // Initialize the distances and previous dictionaries
             Distances = new Dictionary<string, double>();//איתחול
@@ -72,7 +72,7 @@ namespace FinalProject.Store
             return 0;
         }
 
-        private List<(string NeighborId, double Weight)> GetNeighbors(Landmark landmark, string nodeId)
+        private static List<(string NeighborId, double Weight)> GetNeighbors(Landmark landmark, string nodeId)
         {
             var neighbors = new List<(string NeighborId, double Weight)>();
 
@@ -111,7 +111,7 @@ namespace FinalProject.Store
             return neighbors;
         }
 
-        private double WeightCalculation(Room room1, Room room2)
+        private static double WeightCalculation(Room room1, Room room2)
         {
             double weight = Math.Sqrt(Math.Pow(room1.X - room2.X, 2) + Math.Pow(room1.Y - room2.Y, 2));
             return weight;
