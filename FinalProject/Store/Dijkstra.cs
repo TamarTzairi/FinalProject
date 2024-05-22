@@ -13,7 +13,7 @@ namespace FinalProject.Store
         public Dictionary<string, double> Distances { get; private set; }//מרחק
         public Dictionary<string, string> Previous { get; private set; }//האבא הקודם
 
-        public void Execute(Landmark landmark, string startId)
+        public int Execute(Landmark landmark, string startId)
         {
             // Initialize the distances and previous dictionaries
             Distances = new Dictionary<string, double>();//איתחול
@@ -69,6 +69,7 @@ namespace FinalProject.Store
                     }
                 }
             }
+            return 0;
         }
 
         private List<(string NeighborId, double Weight)> GetNeighbors(Landmark landmark, string nodeId)
