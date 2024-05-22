@@ -29,6 +29,15 @@ namespace FinalProject.Controllers
             _algorithmFunction = algorithmFunction;
         }
 
+        [HttpGet]
+        public ActionResult Get()
+        {
+            var g = new Graph();
+            g.buildGraph();
+            Dijkstra.InitailGraph()
+            return null;
+        }
+
         //[HttpGet]
         //public IActionResult CalculateDistances()
         //{

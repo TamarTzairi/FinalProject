@@ -7,12 +7,12 @@ using System.Xml.Linq;
 
 namespace FinalProject.Store
 {
-    public class Graph
+    public class Graph : IGraph
     {
         //public Dictionary<object, int> objectToIndex;
         //public Dictionary<int, object> indexToObject;
 
-        public void buildGraph(Landmark landmark)
+        public string buildGraph(Landmark landmark)
         {
             /*objectToIndex = new Dictionary<object, int>();
             indexToObject = new Dictionary<int, object>();
@@ -39,7 +39,7 @@ namespace FinalProject.Store
                     nodePsr.Data = item.PsrRoom;
                 }
             }
-//זה טוב ועובד
+            //זה טוב ועובד
             /*for (int i = 0; i < landmark.Corridors.Length; i++)
             {
                 
@@ -75,7 +75,7 @@ namespace FinalProject.Store
                      //index++;
                  }
             }*/
-
+            return "1";
         }
         public double WeightCalculation(Room room1, Room room2)
         {
@@ -83,4 +83,6 @@ namespace FinalProject.Store
             return weight;
         }
     }
+
+
 }

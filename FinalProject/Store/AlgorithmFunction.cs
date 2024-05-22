@@ -2,7 +2,7 @@
 using System.IO;
 namespace FinalProject.Store
 {
-    public class AlgorithmFunction
+    public class AlgorithmFunction : IAlgorithmFunction
     {
         int i, j = 0;
         public bool FinalyFunction(Class[] normalRooms, ProtectedSpaceRoom[] safeRoom, int i, int j)
@@ -37,7 +37,7 @@ namespace FinalProject.Store
             {
                 for (int j = 0; j < safeRoom.Length; j++)
                 {
-                    routesMatrix[i, j] = Dijkstra.Execute(landmark1, safeRoom[j].PsrRoom.RoomId);
+                    routesMatrix[i, j] = Dijkstra.InitailGraph(landmark1, safeRoom[j].PsrRoom.RoomId);
                 }
             }
 
@@ -58,7 +58,7 @@ namespace FinalProject.Store
         {
             ProtectedSpaceRoom[] safeRoom = new ProtectedSpaceRoom[5];
             Class[] normalRooms = new Class[5];
-           
+
         }
     }
 }
