@@ -24,7 +24,7 @@ namespace FinalProject.MongoDBConnection
             public IMongoCollection<Class> Class => _database.GetCollection<Class>("Class");
             public IMongoCollection<ProtectedSpaceRoom> PSR => _database.GetCollection<ProtectedSpaceRoom>("ProtectedSpaceRoom");
             public IMongoCollection<Room> Room => _database.GetCollection<Room>("Room");
-
+            
         }
     }
 }

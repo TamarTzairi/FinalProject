@@ -1,3 +1,5 @@
+using FinalProject.DTO;
+using FinalProject.Interfaces;
 using FinalProject.Store;
 using Microsoft.Extensions.Options;
 using MongoDB.Driver;
@@ -13,7 +15,11 @@ var a = builder.Configuration.GetValue<string>("LandmarkStoreDatabaseSettings:Co
 builder.Services.AddSingleton<IMongoClient>(s =>
     new MongoClient(builder.Configuration.GetValue<string>("LandmarkStoreDatabaseSettings:ConnectionString")));
 
-
+builder.Services.AddScoped<IMainProsses, MainProcces>();
+builder.Services.AddScoped<IGraph,Graph>();
+builder.Services.AddScoped<IDijkstra, Dijkstra>();
+builder.Services.AddScoped<IMat,Mat>();
+builder.Services.AddScoped<IAlgorithmFunction, AlgorithmFunction>();
 builder.Services.AddScoped<ILandmarkFunction, LandmarkFunction>();
 builder.Services.AddScoped<IRoomFunction, RoomFunction>();
 builder.Services.AddScoped<IClassFunction, ClassFunction>();

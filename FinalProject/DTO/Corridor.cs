@@ -9,10 +9,15 @@ namespace FinalProject.DTO
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
         public string CorridorId { get; set; }
-        [BsonElement("StartPoint")]
-        public int StartPoint { get; set; }
-        [BsonElement("EndPoint")]
-        public int EndPoint { get; set; }
+
+        [BsonElement("StartPointX")]
+        public double StartPointX { get; set; }
+        [BsonElement("StartPointY")]
+        public double StartPointY { get; set; }
+        [BsonElement("EndPointX")]
+        public double EndPointX { get; set; }
+        [BsonElement("EndPointY")]
+        public double EndPointY { get; set; }
         public int Floor { get; set; }
         public Room CorridorLandmark { get; set; }//כדי שהמסדרון יהיה עם נקודת ציון
         public List<Class> ClassList { get; set; }=new List<Class>();

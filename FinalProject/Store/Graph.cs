@@ -1,5 +1,6 @@
 ﻿using Amazon.Runtime;
 using FinalProject.DTO;
+using FinalProject.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Xml.Linq;
@@ -9,36 +10,66 @@ namespace FinalProject.Store
 {
     public class Graph : IGraph
     {
-        //public Dictionary<object, int> objectToIndex;
-        //public Dictionary<int, object> indexToObject;
 
-        public string buildGraph(Landmark landmark)
+        public Node buildGraph(Landmark landmark)
         {
-            /*objectToIndex = new Dictionary<object, int>();
-            indexToObject = new Dictionary<int, object>();
-            int index = 0;*/
+            Node graph = new Node(null); ;
+            Global.Global.count++;
+            graph.NodeId = landmark.LandmarkId;
+            graph.type = "Landmark";
+            graph.indexMat = -1;
+            graph.Previous = null;
+            graph.Neighbors = new List<Edge>();
+            Room data= new Room();
+            data.Amount = 0;
+            data.X = 0;
+            data.Y = 0;
+            data.RoomId= landmark.LandmarkId;
+            graph.Data = data;
+
             foreach (var item1 in landmark.Corridors)
             {
-                Node<Corridor> corridor = null;
+                Node corridor = new Node(null);
+                Global.Global.count++;
                 corridor.NodeId = item1.CorridorId;
-                corridor.Edges = new List<Edge<Corridor>>();
+                corridor.type = "Corridor";
+                corridor.indexMat = -1;
+                corridor.Previous = graph;
+                corridor.Neighbors = new List<Edge>();
                 corridor.Data = item1.CorridorLandmark;
+                Edge neighborL = new Edge( corridor, 0);
+                graph.Neighbors.Add(neighborL);
 
                 foreach (var item in item1.ClassList)
                 {
-                    Node<Class> nodeClass = null;
+                    Node nodeClass = new Node(null);
+                    Global.Global.count++;
                     nodeClass.NodeId = item.ClassRoom.RoomId;
-                    nodeClass.Edges = new List<Edge<Class>>();//כי אין לחדר שכנים
+                    nodeClass.type = "Class";
+                    nodeClass.indexMat = -1;
+                    nodeClass.Previous = corridor;
+                    nodeClass.Neighbors = new List<Edge>();//כי אין לחדר שכנים
                     nodeClass.Data = item.ClassRoom;
+                    Edge neighborC = new Edge( nodeClass, WeightCalculation(item.ClassRoom, item1.CorridorLandmark));
+                    corridor.Neighbors.Add(neighborC);
                 }
                 foreach (var item in item1.ProtectedSpaceRoomList)
                 {
-                    Node<ProtectedSpaceRoom> nodePsr = null;
+                    Node nodePsr = new Node(null);
+                    Global.Global.count++;
                     nodePsr.NodeId = item.PsrRoom.RoomId;
-                    nodePsr.Edges = new List<Edge<ProtectedSpaceRoom>>();//כי אין לחדר שכנים
+                    nodePsr.type = "ProtectedSpaceRoom";
+                    nodePsr.indexMat = -1;
+                    nodePsr.Previous = corridor;
+                    nodePsr.Neighbors = new List<Edge>();//כי אין לחדר שכנים
                     nodePsr.Data = item.PsrRoom;
+                    Edge neighborC = new Edge(nodePsr, WeightCalculation(item.PsrRoom, item1.CorridorLandmark));
+                    corridor.Neighbors.Add(neighborC);
                 }
             }
+
+            return graph;
+
             //זה טוב ועובד
             /*for (int i = 0; i < landmark.Corridors.Length; i++)
             {
@@ -75,7 +106,7 @@ namespace FinalProject.Store
                      //index++;
                  }
             }*/
-            return "1";
+
         }
         public double WeightCalculation(Room room1, Room room2)
         {

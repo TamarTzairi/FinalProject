@@ -3,23 +3,24 @@ using MongoDB.Bson;
 
 namespace FinalProject.DTO
 {
-    public class Edge<T>
+    public class Edge
     {
         //[BsonRepresentation(BsonType.ObjectId)]
-        [BsonElement("source")]
-        public Node<T> Source { get; set; }//מקור
+       // [BsonElement("source")]
+       // public Node Source { get; set; }//מקור
 
         [BsonElement("target")]
-        public Node<T> Target { get; set; }//יעד
+        public Node nodeNeighbor { get; set; }//הנוד עצמו ולא רק השכן
 
         [BsonElement("weight")]
         public double Weight { get; set; }//משקל
 
-        public Edge(Node<T> source, Node<T> target, double weight)
+        public Edge(/*Node source,*/ Node NodeNeighbor, double weight)
         {
-            Source = source;
-            Target = target;
-            Weight = weight;
+            //Source = source;
+            nodeNeighbor = NodeNeighbor;
+            Weight = weight; 
         }
     }
 }
+//---------------------------------------------אין-צורך----------------------------------------------

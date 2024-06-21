@@ -3,6 +3,6 @@
     public class ResultDto
     {
         public string Class { get; set; }
-        public string Room { get; set; }
+        public string psrRoom { get; set; }
     }
 }

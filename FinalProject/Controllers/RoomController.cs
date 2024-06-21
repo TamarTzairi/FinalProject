@@ -1,5 +1,5 @@
 ﻿using FinalProject.DTO;
-using FinalProject.Store;
+using FinalProject.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FinalProject.Controllers

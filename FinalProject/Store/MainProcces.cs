@@ -1,8 +1,10 @@
 ﻿using FinalProject.DTO;
+using FinalProject.Interfaces;
+
 
 namespace FinalProject.Store
 {
-    public class MainProcces
+    public class MainProcces : IMainProsses
     {
         private ILandmarkFunction landmark;
         private IGraph graph;
@@ -17,18 +19,35 @@ namespace FinalProject.Store
             this.mat = mat;
             this.algorithmFunction = algorithmFunction;
         }
-        public List<ResultDto> Func(string id)
+
+        public List<ResultDto> FuncRun(string id)
         {
-            //aשליפה מDB
+            // שליפה מדאטא בייס 
             Landmark l = landmark.Get(id);
+            //בונה את מערך הכיתות ומערך הממ"דים
+            List<Room> classRooms = new List<Room>();
+            List<Room> psrRoons = new List<Room>();
+            foreach (var corridor in l.Corridors)
+            {
+                foreach (var classs in corridor.ClassList)
+                {
+                    classRooms.Add(classs.ClassRoom);
+                }
+                foreach (var psr in corridor.ProtectedSpaceRoomList)
+                {
+                    psrRoons.Add(psr.PsrRoom);
+                }
+            }
+            //מכאן זה בשביל למלא את מטריצת המשקלים
             //שליחה לבניית גרף
             var startId = graph.buildGraph(l);
-            //שליחה לדייקסטרה
-            var d = dijkstra.InitailGraph(l, startId);
             //הכנסה למטריצת מסלולים
-            var m = mat.buildMat(d);
+            var m = mat.buildMat(startId);
+            //שליחה לדייקסטרה - מתבצע בתוך הפונקציה של בניית המטריצה 
+            //var d = dijkstra.InitailGraph(l, );
+            //עד כאן זה בשביל למלא את מטריצת המסלולים
             //שליחה לשיבוץ
-            var a = algorithmFunction.FinalyFunction(m);
+            var a = algorithmFunction.FinalyFunction(classRooms, psrRoons, m, 0, 0);
             //חוזר מערך של כיתות ושיבוץ בחדרים
             return a;
         }

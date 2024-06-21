@@ -1,64 +1,54 @@
 ﻿using FinalProject.DTO;
+using FinalProject.Interfaces;
+using System;
 using System.IO;
 namespace FinalProject.Store
 {
     public class AlgorithmFunction : IAlgorithmFunction
     {
-        int i, j = 0;
-        public bool FinalyFunction(Class[] normalRooms, ProtectedSpaceRoom[] safeRoom, int i, int j)
-        {
-            if (j > normalRooms.Length)
-            {
-                return false;//כשל
-            }
+        int i = 0, j = 0,r=0;
+        List<ResultDto> result = new List<ResultDto>();
 
-            if (normalRooms[i].ClassRoom.Amount <= safeRoom[j].PsrRoom.Amount)
+        public List<ResultDto> FinalyFunction(List<Room> normalRooms, List<Room> safeRoom, (Dictionary<string, double>, Dictionary<string, string>)[] mat, int i, int j)
+        {
+            if (IsCan(normalRooms, safeRoom, i, j)==false)
             {
+                Console.WriteLine("Sorry");
+            }
+           // IsCan(normalRooms, safeRoom, i, j);
+            return result;
+        }
+        public bool IsCan(List<Room> normalRooms, List<Room> safeRoom, int i, int j)
+        {
+            if (i >= normalRooms.Count || j >= safeRoom.Count)
+            {
+                Console.WriteLine("The operation cannot be performed!");//failure
+                return false;
+            
+            }
+            //if (j > normalRooms.Count)
+            //{
+            //    Console.WriteLine("הפעולה לא יכולה להתבצע!");//כשל
+            //    return false;
+            //}
+            if (normalRooms[i].Amount <= safeRoom[j].Amount)
+            {
+                safeRoom[j].Amount -= normalRooms[i].Amount;
+                ResultDto rd = new ResultDto();
+                rd.Class = normalRooms[i].RoomId;
+                rd.psrRoom = safeRoom[j].RoomId;
+                //  result[r] = rd;
+                result.Add( rd);
+                r++;
                 i++;
-                safeRoom[j].PsrRoom.Amount -= normalRooms[i].ClassRoom.Amount;
 
             }
             else
             {
                 j++;
             }
-            FinalyFunction(normalRooms, safeRoom, i, j);
+            IsCan(normalRooms, safeRoom, i, j);
             return true;
-        }
-
-        public int[,] FillRoutesMatrix(Landmark landmark1, ProtectedSpaceRoom[] safeRoom, Class[] normalRooms)
-        {
-            // Get the number of nodes in the graph
-            //int numNodes = graph.Count;
-
-            // Initialize the routes matrix with all distances as infinity
-            int[,] routesMatrix = new int[normalRooms.Length, safeRoom.Length];
-            for (int i = 0; i < normalRooms.Length; i++)
-            {
-                for (int j = 0; j < safeRoom.Length; j++)
-                {
-                    routesMatrix[i, j] = Dijkstra.InitailGraph(landmark1, safeRoom[j].PsrRoom.RoomId);
-                }
-            }
-
-            //// Compute shortest routes between all pairs of nodes using Dijkstra's algorithm
-            //for (int i = 0; i < normalRooms.Length; i++)
-            //{
-            //    Dictionary<int, int> distances = Dijkstra.DijkstraF(graph, i);
-
-            //    foreach (var kvp in distances)
-            //    {
-            //        routesMatrix[i, kvp.Key] = kvp.Value;
-            //    }
-            //}
-
-            return routesMatrix;
-        }
-        public static void Main(string[] args)
-        {
-            ProtectedSpaceRoom[] safeRoom = new ProtectedSpaceRoom[5];
-            Class[] normalRooms = new Class[5];
-
         }
     }
 }

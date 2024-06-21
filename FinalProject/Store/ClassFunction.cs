@@ -1,4 +1,5 @@
 ﻿using FinalProject.DTO;
+using FinalProject.Interfaces;
 using MongoDB.Driver;
 
 namespace FinalProject.Store

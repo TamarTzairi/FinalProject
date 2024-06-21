@@ -1,0 +1,166 @@
+{
+  "landmarkId": "",
+  "corridors": [
+    {
+      "corridorId": "",
+      "startPointX": 15,
+      "startPointY": 35,
+      "endPointX": 15,
+      "endPointY": 15,
+      "floor": 0,
+      "corridorLandmark": {
+        "roomId": "",
+        "x": 15,
+        "y": 25,
+        "amount": 0
+      },
+      "classList": [
+        {
+          "classId": "",
+          "classRoom": {
+            "roomId": "",
+            "x": 20,
+            "y": 30,
+            "amount": 20
+          }
+        },
+        {
+          "classId": "",
+          "classRoom": {
+            "roomId": "",
+            "x": 10,
+            "y": 20,
+            "amount": 25
+          }
+        },
+        {
+          "classId": "",
+          "classRoom": {
+            "roomId": "",
+            "x": 20,
+            "y": 20,
+            "amount": 22
+          }
+        },
+        {
+          "classId": "",
+          "classRoom": {
+            "roomId": "",
+            "x": 10,
+            "y": 10,
+            "amount": 30
+          }
+        }
+      ],
+      "protectedSpaceRoomList": [
+        {
+          "psrId": "",
+          "psrRoom": {
+            "roomId": "",
+            "x": 10,
+            "y": 30,
+            "amount": 150
+          }
+        }
+      ]
+    }, 
+    {
+      "corridorId": "",
+      "startPointX": 15,
+      "startPointY": 15,
+      "endPointX": 45,
+      "endPointY": 15,
+      "floor": 0,
+      "corridorLandmark": {
+        "roomId": "",
+        "x": 25,
+        "y": 15,
+        "amount": 0
+      },
+      "classList": [
+        {
+          "classId": "",
+          "classRoom": {
+            "roomId": "",
+            "x": 30,
+            "y": 25,
+            "amount": 26
+          }
+        },
+        {
+          "classId": "",
+          "classRoom": {
+            "roomId": "",
+            "x": 30,
+            "y": 10,
+            "amount": 35
+          }
+        }
+      ],
+      "protectedSpaceRoomList": []
+    },
+    {
+      "corridorId": "",
+      "startPointX": 45,
+      "startPointY": 15,
+      "endPointX": 45,
+      "endPointY": 35,
+      "floor": 0,
+      "corridorLandmark": {
+        "roomId": "",
+        "x": 45,
+        "y": 25,
+        "amount": 0
+      },
+      "classList": [
+        {
+          "classId": "",
+          "classRoom": {
+            "roomId": "",
+            "x": 45,
+            "y": 10,
+            "amount": 32
+          }
+        },
+        {
+          "classId": "",
+          "classRoom": {
+            "roomId": "",
+            "x": 50,
+            "y": 20,
+            "amount": 21
+          }
+        },
+        {
+          "classId": "",
+          "classRoom": {
+            "roomId": "",
+            "x": 40,
+            "y": 20,
+            "amount": 19
+          }
+        },
+        {
+          "classId": "",
+          "classRoom": {
+            "roomId": "",
+            "x": 40,
+            "y": 30,
+            "amount": 28
+          }
+        }
+      ],
+      "protectedSpaceRoomList": [
+        {
+          "psrId": "",
+          "psrRoom": {
+            "roomId": "",
+            "x": 50,
+            "y": 30,
+            "amount": 120
+          }
+        }
+      ]
+    }
+  ]
+}

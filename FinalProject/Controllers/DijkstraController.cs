@@ -12,6 +12,8 @@
 
 //    }
 //}
+using FinalProject.DTO;
+using FinalProject.Interfaces;
 using FinalProject.Store;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
@@ -23,18 +25,22 @@ namespace FinalProject.Controllers
     public class DijkstraController : ControllerBase
     {
         private readonly Dijkstra _algorithmFunction;
-
-        public DijkstraController(Dijkstra algorithmFunction)
+        private ILandmarkFunction lMongo;
+        public DijkstraController(Dijkstra algorithmFunction,ILandmarkFunction lMongo)
         {
             _algorithmFunction = algorithmFunction;
+            this.lMongo= lMongo ;
         }
 
         [HttpGet]
-        public ActionResult Get()
-        {
-            var g = new Graph();
-            g.buildGraph();
-            Dijkstra.InitailGraph()
+        public ActionResult Get(string id)
+        {   
+            //Landmark l = new Landmark();//---------------------------------------אמור להיות המבנה של הלקוח
+            Landmark ln = lMongo.Get(id);
+             
+            //var g = new Graph();
+            //g.buildGraph(l);
+            // Dijkstra.InitailGraph(l,s);
             return null;
         }
 
