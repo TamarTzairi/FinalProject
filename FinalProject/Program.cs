@@ -6,11 +6,6 @@ using MongoDB.Driver;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-//builder.Services.Configure<LandmarkStoreDatabaseSettings>(
-//    builder.Configuration.GetSection(nameof(LandmarkStoreDatabaseSettings)));
-//builder.Services.AddSingleton<MyLandmarkStoreDatabaseSettings>(
-//    sp => sp.GetRequiredService<IOptions<LandmarkStoreDatabaseSettings>>().Value);
 var a = builder.Configuration.GetValue<string>("LandmarkStoreDatabaseSettings:ConnectionString");
 builder.Services.AddSingleton<IMongoClient>(s =>
     new MongoClient(builder.Configuration.GetValue<string>("LandmarkStoreDatabaseSettings:ConnectionString")));
@@ -47,3 +42,8 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+// Add services to the container.
+//builder.Services.Configure<LandmarkStoreDatabaseSettings>(
+//    builder.Configuration.GetSection(nameof(LandmarkStoreDatabaseSettings)));
+//builder.Services.AddSingleton<MyLandmarkStoreDatabaseSettings>(
+//    sp => sp.GetRequiredService<IOptions<LandmarkStoreDatabaseSettings>>().Value);

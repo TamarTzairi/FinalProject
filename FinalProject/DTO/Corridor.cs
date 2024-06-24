@@ -9,7 +9,6 @@ namespace FinalProject.DTO
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
         public string CorridorId { get; set; }
-
         [BsonElement("StartPointX")]
         public double StartPointX { get; set; }
         [BsonElement("StartPointY")]
@@ -22,7 +21,5 @@ namespace FinalProject.DTO
         public Room CorridorLandmark { get; set; }//כדי שהמסדרון יהיה עם נקודת ציון
         public List<Class> ClassList { get; set; }=new List<Class>();
         public List<ProtectedSpaceRoom> ProtectedSpaceRoomList { get; set; } = new List<ProtectedSpaceRoom>(); 
-
-        //public List<ProtectedSpaceRoom> ProtectedSpaceRoomList { get;} = new List<ProtectedSpaceRoom>();
     }
 }

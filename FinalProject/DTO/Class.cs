@@ -3,7 +3,7 @@ using MongoDB.Bson;
 
 namespace FinalProject.DTO
 {
-    //כיתה
+    //חדר רגיל
     public class Class
     {
         [BsonId]

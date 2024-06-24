@@ -1,7 +1,5 @@
 ﻿using FinalProject.DTO;
 using FinalProject.Interfaces;
-
-
 namespace FinalProject.Store
 {
     public class MainProcces : IMainProsses
@@ -19,8 +17,7 @@ namespace FinalProject.Store
             this.mat = mat;
             this.algorithmFunction = algorithmFunction;
         }
-
-        public List<ResultDto> FuncRun(string id)
+        public List<ResultDto> FuncRun(string id,double time)
         {
             // שליפה מדאטא בייס 
             Landmark l = landmark.Get(id);
@@ -47,14 +44,12 @@ namespace FinalProject.Store
             //var d = dijkstra.InitailGraph(l, );
             //עד כאן זה בשביל למלא את מטריצת המסלולים
             //שליחה לשיבוץ
-            var a = algorithmFunction.FinalyFunction(classRooms, psrRoons, m, 0, 0);
+            var a = algorithmFunction.FinalyFunction(classRooms, psrRoons, m, 0, 0,time,l);
             //חוזר מערך של כיתות ושיבוץ בחדרים
             return a;
         }
-
-
-        //קונטרולר שמקבל קובץ של JSON
-        //פונקציה תציר אותו לאוביקטים ותשמור ב DB
-        //תשלח את הID לFUNC
     }
 }
+//קונטרולר שמקבל קובץ של JSON
+//פונקציה תציר אותו לאוביקטים ותשמור ב DB
+//תשלח את הID לFUNC

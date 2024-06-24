@@ -2,9 +2,6 @@
 using MongoDB.Bson.Serialization.Attributes;
 namespace FinalProject.DTO
 {
-    //נקודת ציון
-    //IdLandmarkRoom הראשון זה מאיזה סוג והשני זה איפה הוא נמצא
-   // [BsonIgnoreExtraElements]
     public class Landmark
     {
         [BsonId]

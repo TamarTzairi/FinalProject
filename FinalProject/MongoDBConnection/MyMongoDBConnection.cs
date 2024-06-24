@@ -10,8 +10,6 @@ namespace FinalProject.MongoDBConnection
         {
             private readonly IMongoDatabase _database;
 
-
-
             public MongoDBContext()
             {
                 string ConnectionString = "mongodb+srv://tamartz3112:<TZ3112TZ>@cluster0.ml3ivym.mongodb.net/?retryWrites=true&w=majority", DatabaseName = "Building";

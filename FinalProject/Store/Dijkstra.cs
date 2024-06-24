@@ -11,24 +11,6 @@ namespace FinalProject.Store
 {
     public class Dijkstra : IDijkstra
     {
-
-
-
-        // public Dictionary<string, Dictionary<string, int>> AdjacencyList { get; } = new Dictionary<string, Dictionary<string, int>>();
-
-        //public void AddEdge(string source, string target, int weight)
-        //{
-        //    if (!AdjacencyList.ContainsKey(source))
-        //        AdjacencyList[source] = new Dictionary<string, int>();
-
-        //    AdjacencyList[source][target] = weight;
-
-        //    if (!AdjacencyList.ContainsKey(target))
-        //        AdjacencyList[target] = new Dictionary<string, int>();
-        //}
-
-
-
         public (Dictionary<string, double> distances, Dictionary<string, string> previous) DijkstraAlgorithm(Node graph, string source)
         {
             var distances = new Dictionary<string, double>();// מכיל את האידי של הנוד ואת המרחק
@@ -68,8 +50,6 @@ namespace FinalProject.Store
 
             return (distances, previous);
         }
-
-
     }
     //טוב טוב טוב
     /* public static Dictionary<string, double> Distances { get; private set; }//מרחק

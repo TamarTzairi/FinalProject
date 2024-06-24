@@ -4,13 +4,10 @@ using FinalProject.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Xml.Linq;
-
-
 namespace FinalProject.Store
 {
     public class Graph : IGraph
     {
-
         public Node buildGraph(Landmark landmark)
         {
             Node graph = new Node(null); ;
@@ -36,6 +33,7 @@ namespace FinalProject.Store
                 corridor.indexMat = -1;
                 corridor.Previous = graph;
                 corridor.Neighbors = new List<Edge>();
+                item1.CorridorLandmark.Amount= (int)WeightCalculation2(item1.StartPointX,item1.EndPointX,item1.StartPointY,item1.EndPointY);
                 corridor.Data = item1.CorridorLandmark;
                 Edge neighborL = new Edge( corridor, 0);
                 graph.Neighbors.Add(neighborL);
@@ -67,53 +65,69 @@ namespace FinalProject.Store
                     corridor.Neighbors.Add(neighborC);
                 }
             }
-
-            return graph;
-
-            //זה טוב ועובד
-            /*for (int i = 0; i < landmark.Corridors.Length; i++)
+            //מחבר בין המסדרונות השכנים
+            foreach (var item in landmark.Corridors)
             {
-                
-                 for (int j = 0; j < landmark.Corridors[i].ClassList.Length; j++)
-                 {
-                     Node<Class> nodeClass = null;
-                     nodeClass.NodeId = landmark.Corridors[i].ClassList[j].ClassRoom.RoomId;
-                     nodeClass.Edges = new List<Edge<Class>>();//כי אין לחדר שכנים
-                     nodeClass.Data = landmark.Corridors[i].ClassList[j].ClassRoom;
-                     //Edge<Class> edgeClass = null;
-                     //edgeClass.Source = nodeClass; //מקור
-                     //edgeClass.Target = corridor;//יעד
-                     //edgeClass.Weight = WeightCalculation(corridor.Data, nodeClass.Data);//------------------------------------------------------------------------
-                     //nodeClass.AddEdge(corridor, edgeClass.Weight);
-                     //corridor.AddEdge(nodeClass, edgeClass.Weight);
-                     //objectToIndex[nodeClass] = index;
-                     //indexToObject[index] = nodeClass;
-                     //index++;
-                 }
-                 for (int j = 0; j < landmark.Corridors[i].ProtectedSpaceRoomList.Length; j++)
-                 {
-                     Node<ProtectedSpaceRoom> nodePsr = null;
-                     nodePsr.NodeId = landmark.Corridors[i].ProtectedSpaceRoomList[j].PsrRoom.RoomId;
-                     nodePsr.Edges = new List<Edge<ProtectedSpaceRoom>>();//כי אין לחדר שכנים
-                     //Edge<ProtectedSpaceRoom> edgePsr = null;
-                     //edgePsr.Target = nodePsr;//יעד
-                     //edgePsr.Source = corridor;//מקור
-                     //edgePsr.Weight = 0;//---------------------------------------------------------------------------
-                     //nodePsr.AddEdge(corridor, edgePsr.Weight);
-                     //corridor.AddEdge(nodePsr, edgePsr.Weight);
-                     //objectToIndex[nodePsr] = index;
-                     //indexToObject[index] = nodePsr;
-                     //index++;
-                 }
-            }*/
-
+                foreach (var item1 in landmark.Corridors)
+                {
+                    if (((item.EndPointX== item1.EndPointX) &&(item.EndPointY== item1.EndPointY)) ||
+                        ((item.StartPointX==item1.StartPointX)&&(item.StartPointY==item1.StartPointY))||
+                        ((item.StartPointX==item1.EndPointX)&&(item.StartPointY==item1.EndPointY))||
+                        ((item.EndPointX==item1.StartPointX) && (item.EndPointY==item1.StartPointY)))
+                    {
+                        Edge edge = graph.Neighbors.Find(x => x.nodeNeighbor.NodeId == item1.CorridorId);
+                        edge.Weight=WeightCalculation(item.CorridorLandmark, item1.CorridorLandmark);
+                        graph.Neighbors.Find(x=>x.nodeNeighbor.NodeId==item.CorridorId).nodeNeighbor.Neighbors.Add(edge);
+                    }
+                }
+            }
+            return graph;          
         }
         public double WeightCalculation(Room room1, Room room2)
         {
             double weight = Math.Sqrt(Math.Pow(room1.X - room2.X, 2) + Math.Pow(room1.Y - room2.Y, 2));
             return weight;
         }
+        public double WeightCalculation2(double x1, double x2,double y1, double y2)
+        {
+            double weight = Math.Sqrt(Math.Pow(x1 - x2, 2) + Math.Pow(y1 - y2, 2));
+            return weight;
+        }
     }
-
-
 }
+//זה טוב ועובד
+/*for (int i = 0; i < landmark.Corridors.Length; i++)
+{
+
+     for (int j = 0; j < landmark.Corridors[i].ClassList.Length; j++)
+     {
+         Node<Class> nodeClass = null;
+         nodeClass.NodeId = landmark.Corridors[i].ClassList[j].ClassRoom.RoomId;
+         nodeClass.Edges = new List<Edge<Class>>();//כי אין לחדר שכנים
+         nodeClass.Data = landmark.Corridors[i].ClassList[j].ClassRoom;
+         //Edge<Class> edgeClass = null;
+         //edgeClass.Source = nodeClass; //מקור
+         //edgeClass.Target = corridor;//יעד
+         //edgeClass.Weight = WeightCalculation(corridor.Data, nodeClass.Data);//------------------------------------------------------------------------
+         //nodeClass.AddEdge(corridor, edgeClass.Weight);
+         //corridor.AddEdge(nodeClass, edgeClass.Weight);
+         //objectToIndex[nodeClass] = index;
+         //indexToObject[index] = nodeClass;
+         //index++;
+     }
+     for (int j = 0; j < landmark.Corridors[i].ProtectedSpaceRoomList.Length; j++)
+     {
+         Node<ProtectedSpaceRoom> nodePsr = null;
+         nodePsr.NodeId = landmark.Corridors[i].ProtectedSpaceRoomList[j].PsrRoom.RoomId;
+         nodePsr.Edges = new List<Edge<ProtectedSpaceRoom>>();//כי אין לחדר שכנים
+         //Edge<ProtectedSpaceRoom> edgePsr = null;
+         //edgePsr.Target = nodePsr;//יעד
+         //edgePsr.Source = corridor;//מקור
+         //edgePsr.Weight = 0;//---------------------------------------------------------------------------
+         //nodePsr.AddEdge(corridor, edgePsr.Weight);
+         //corridor.AddEdge(nodePsr, edgePsr.Weight);
+         //objectToIndex[nodePsr] = index;
+         //indexToObject[index] = nodePsr;
+         //index++;
+     }
+}*/

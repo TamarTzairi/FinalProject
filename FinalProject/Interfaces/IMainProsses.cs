@@ -4,8 +4,6 @@ namespace FinalProject.Interfaces
 {
     public interface IMainProsses
     {
-         List<ResultDto> FuncRun(string id);
-
-
+         List<ResultDto> FuncRun(string id,double time);
     }
 }

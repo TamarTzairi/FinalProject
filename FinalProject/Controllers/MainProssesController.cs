@@ -16,9 +16,9 @@ namespace FinalProject.Controllers
             this.mp = mp;
         }
         [HttpGet]
-        public ActionResult<List<ResultDto>> Get(string id)
+        public ActionResult<List<ResultDto>> Get(string id,double time)
         {
-            var finalyResult = mp.FuncRun(id);
+            var finalyResult = mp.FuncRun(id,time);
             return finalyResult;
         }
     }
