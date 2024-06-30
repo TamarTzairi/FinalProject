@@ -44,7 +44,7 @@ namespace FinalProject.Store
             //var d = dijkstra.InitailGraph(l, );
             //עד כאן זה בשביל למלא את מטריצת המסלולים
             //שליחה לשיבוץ
-            var a = algorithmFunction.FinalyFunction(classRooms, psrRoons, m, 0, 0,time,l);
+            var a = algorithmFunction.FinalyFunction(classRooms, psrRoons, m, 0, 0,time,startId);
             //חוזר מערך של כיתות ושיבוץ בחדרים
             return a;
         }

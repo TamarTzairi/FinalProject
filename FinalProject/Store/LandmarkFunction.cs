@@ -14,10 +14,15 @@ namespace FinalProject.Store
             var database = mongoClient.GetDatabase("Building");
             _landmark = database.GetCollection<Landmark>("Landmark");
         }
-        public Landmark Create(Landmark landmark)
+        //public Landmark Create(Landmark landmark)
+        //{
+        //    _landmark.InsertOne(landmark);
+        //    return landmark;
+        //}
+        public string Create(Landmark landmark)
         {
             _landmark.InsertOne(landmark);
-            return landmark;
+            return landmark.LandmarkId;
         }
         public List<Landmark> Get()
         {

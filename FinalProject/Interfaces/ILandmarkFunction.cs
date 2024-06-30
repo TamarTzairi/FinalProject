@@ -7,7 +7,9 @@ namespace FinalProject.Interfaces
     {
         List<Landmark> Get();
         Landmark Get(string id);
-        Landmark Create(Landmark landmark);
+        //Landmark Create(Landmark landmark);
+        string Create(Landmark landmark);
+
         void Update(string id, Landmark landmark);
         void Remove(string id);
     }

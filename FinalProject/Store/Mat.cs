@@ -8,39 +8,44 @@ namespace FinalProject.Store
     {
         public (Dictionary<string, double>, Dictionary<string, string>)[] buildMat(Node graph)
         {
-            Landmark landmark = new Landmark();                                                                     //----------------------------אמור להיות המבנה של הלקוח--------------------
+            //Landmark landmark = new Landmark();                                                                     //----------------------------אמור להיות המבנה של הלקוח--------------------
             var matrix = new (Dictionary<string, double>, Dictionary<string, string>)[Global.Global.count];
             Dijkstra dijkstra = new Dijkstra();
-            //var saveGraph = graph;
+            var saveGraph = graph;
 
             for (int i = 0; i < Global.Global.count; i++)
             {
                 graph.indexMat = i;
                 //הוא מוצא את המסלול הכי קצר מנקודה
-                //j לנקודה i
+                //לכל הנקודות i
                 var d = dijkstra.DijkstraAlgorithm(graph, graph.NodeId);
                 matrix[i] = d;
 
-                if (graph.Neighbors == null)
+                if (graph.Neighbors.Count == 0||graph.Neighbors==null)
                 {
                     graph = graph.Previous;
                 }
+                //if (graph.type=="Corridor" && graph.Previous.type=="Corridor")
+                //{
+
+                //}
                 //בשביל לקדם את הגרף
                 for (int j = 0; j < graph.Neighbors.Count; j++)
                 {
                     if (graph.Neighbors[j].nodeNeighbor.indexMat == -1)
                     {
-                        graph = graph.Neighbors[j].nodeNeighbor;
+                        graph = graph.Neighbors[j].nodeNeighbor; 
                         break;
                     }
                     if (j == graph.Neighbors.Count-1)
                     {
                        // graph = graph.Previous.Previous;
                         graph = graph.Previous.Previous;
-
+                        break;
                     }
                 }
             }
+            graph = saveGraph;
             return matrix;
         }
     }

@@ -35,12 +35,21 @@ namespace FinalProject.Controllers
         }
 
         // POST api/<LandmarkController>
-        [HttpPost]
-        public ActionResult<Landmark> Post([FromBody] Landmark landmark)
-        {
+        //[HttpPost]
+        //public ActionResult<Landmark> Post([FromBody] Landmark landmark)
+        //{
            
-            landmarkFunction.Create(landmark);
-            return CreatedAtAction(nameof(Get), new { id = landmark.LandmarkId }, landmark);
+        //    landmarkFunction.Create(landmark);
+        //    return CreatedAtAction(nameof(Get), new { id = landmark.LandmarkId }, landmark);
+
+        //}
+        // POST api/<LandmarkController>
+        [HttpPost]
+        public ActionResult<string> Post([FromBody] Landmark landmark)
+        {
+
+           return landmarkFunction.Create(landmark);
+           
 
         }
 
