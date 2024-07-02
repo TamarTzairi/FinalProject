@@ -9,6 +9,8 @@ namespace FinalProject.DTO
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
         public string RoomId { get; set; }
+        [BsonElement("name")]
+        public string name { get; set; }
         [BsonElement("x")]
         public double X { get; set; }
         [BsonElement("y")]

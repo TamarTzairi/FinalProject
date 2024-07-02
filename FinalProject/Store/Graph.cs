@@ -17,12 +17,13 @@ namespace FinalProject.Store
             graph.indexMat = -1;
             graph.Previous = null;
             graph.Neighbors = new List<Edge>();
-            Room data= new Room();
+            Room data = new Room();
             data.Amount = 0;
             data.X = 0;
             data.Y = 0;
-            data.RoomId= landmark.LandmarkId;
+            data.RoomId = landmark.LandmarkId;
             graph.Data = data;
+            graph.floor = -500;
 
             foreach (var item1 in landmark.Corridors)
             {
@@ -33,9 +34,10 @@ namespace FinalProject.Store
                 corridor.indexMat = -1;
                 corridor.Previous = graph;
                 corridor.Neighbors = new List<Edge>();
-                item1.CorridorLandmark.Amount= (int)WeightCalculation2(item1.StartPointX,item1.EndPointX,item1.StartPointY,item1.EndPointY);
+                item1.CorridorLandmark.Amount = (int)WeightCalculation2(item1.StartPointX, item1.EndPointX, item1.StartPointY, item1.EndPointY);
                 corridor.Data = item1.CorridorLandmark;
-                Edge neighborL = new Edge( corridor, 0);
+                corridor.floor = item1.Floor;
+                Edge neighborL = new Edge(corridor, 0);
                 graph.Neighbors.Add(neighborL);
 
                 foreach (var item in item1.ClassList)
@@ -48,7 +50,8 @@ namespace FinalProject.Store
                     nodeClass.Previous = corridor;
                     nodeClass.Neighbors = new List<Edge>();//כי אין לחדר שכנים
                     nodeClass.Data = item.ClassRoom;
-                    Edge neighborC = new Edge( nodeClass, WeightCalculation(item.ClassRoom, item1.CorridorLandmark));
+                    nodeClass.floor = item1.Floor;
+                    Edge neighborC = new Edge(nodeClass, WeightCalculation(item.ClassRoom, item1.CorridorLandmark));
                     corridor.Neighbors.Add(neighborC);
                 }
                 foreach (var item in item1.ProtectedSpaceRoomList)
@@ -61,6 +64,7 @@ namespace FinalProject.Store
                     nodePsr.Previous = corridor;
                     nodePsr.Neighbors = new List<Edge>();//כי אין לחדר שכנים
                     nodePsr.Data = item.PsrRoom;
+                    nodePsr.floor = item1.Floor;
                     Edge neighborC = new Edge(nodePsr, WeightCalculation(item.PsrRoom, item1.CorridorLandmark));
                     corridor.Neighbors.Add(neighborC);
                 }
@@ -70,25 +74,26 @@ namespace FinalProject.Store
             {
                 foreach (var item1 in landmark.Corridors)
                 {
-                    if (((item.EndPointX== item1.EndPointX) &&(item.EndPointY== item1.EndPointY)) ||
-                        ((item.StartPointX==item1.StartPointX)&&(item.StartPointY==item1.StartPointY))||
-                        ((item.StartPointX==item1.EndPointX)&&(item.StartPointY==item1.EndPointY))||
-                        ((item.EndPointX==item1.StartPointX) && (item.EndPointY==item1.StartPointY)))
+                    if (((item.EndPointX == item1.EndPointX) && (item.EndPointY == item1.EndPointY)) ||
+                        ((item.StartPointX == item1.StartPointX) && (item.StartPointY == item1.StartPointY)) ||
+                        ((item.StartPointX == item1.EndPointX) && (item.StartPointY == item1.EndPointY)) ||
+                        ((item.EndPointX == item1.StartPointX) && (item.EndPointY == item1.StartPointY)))
                     {
+                        int number = Math.Abs(item.Floor - item1.Floor)+1;                       
                         Edge edge = graph.Neighbors.Find(x => x.nodeNeighbor.NodeId == item1.CorridorId);
-                        edge.Weight=WeightCalculation(item.CorridorLandmark, item1.CorridorLandmark);
-                        graph.Neighbors.Find(x=>x.nodeNeighbor.NodeId==item.CorridorId).nodeNeighbor.Neighbors.Add(edge);
+                        edge.Weight = WeightCalculation(item.CorridorLandmark, item1.CorridorLandmark)*number;
+                        graph.Neighbors.Find(x => x.nodeNeighbor.NodeId == item.CorridorId).nodeNeighbor.Neighbors.Add(edge);
                     }
                 }
             }
-            return graph;          
+            return graph;
         }
         public double WeightCalculation(Room room1, Room room2)
         {
             double weight = Math.Sqrt(Math.Pow(room1.X - room2.X, 2) + Math.Pow(room1.Y - room2.Y, 2));
             return weight;
         }
-        public double WeightCalculation2(double x1, double x2,double y1, double y2)
+        public double WeightCalculation2(double x1, double x2, double y1, double y2)
         {
             double weight = Math.Sqrt(Math.Pow(x1 - x2, 2) + Math.Pow(y1 - y2, 2));
             return weight;

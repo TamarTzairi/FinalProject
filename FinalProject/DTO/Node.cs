@@ -14,6 +14,8 @@ namespace FinalProject.DTO
         [BsonElement]
         public int indexMat { get; set; } = Global.Global.count;//מיקום במטריצת המסלולים
         [BsonElement]
+        public int floor { get; set; } = -500;
+        [BsonElement]
         public Node Previous { get; set; }//הקודם
         [BsonElement]
         public List<Edge> Neighbors { get; set; } = new List<Edge>();// שכנים

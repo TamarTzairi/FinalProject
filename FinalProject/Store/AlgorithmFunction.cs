@@ -54,10 +54,10 @@ namespace FinalProject.Store
                 {
                     foreach (var item in graph.Neighbors)
                     {
-                        var foundNeighbor = item.nodeNeighbor?.Neighbors?.Find(x => x.nodeNeighbor.NodeId == normalRooms[i].RoomId);
+                        var foundNeighbor = item.nodeNeighbor?.Neighbors?.Find(b => b.nodeNeighbor.NodeId == normalRooms[i].RoomId);
                         if (foundNeighbor != null)
                         {
-                            index = foundNeighbor.nodeNeighbor;
+                            index = foundNeighbor.nodeNeighbor.Previous;
                             break;
                         }
                     }
